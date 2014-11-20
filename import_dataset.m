@@ -1,4 +1,7 @@
-fid = fopen("lms2");
+file = "lms3.";
+
+raw = [file "raw"]
+fid = fopen(raw);
 
 ret = fread(fid,3,"float");
 
@@ -30,3 +33,12 @@ while 1
     
 end
 
+th = 0:180;
+th = th * pi/180;
+
+bg_f =[file "bg"] 
+
+fid = fopen(bg_f);
+
+[tt, count] = fread(fid,1,"int");
+[bg, count] = fread(fid,MAXDATLEN,"unsigned short");
