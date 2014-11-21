@@ -8,7 +8,7 @@ for i=1:l
 
 h1 = polar(th,bg_data,'r');
 hold on;
-polar(th,laser_data(:,i)','xb'), axis([-5000 5000 -100 5000]);
+polar(th,laser_data(:,i)','xb'), axis([-5000 5000 -100 10000]);
 
 set(h1,'linewidth',2);
 

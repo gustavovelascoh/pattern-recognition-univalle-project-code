@@ -1,35 +1,8 @@
-clear all;
-clear figure;
-ds = [0 0;
-      -1 0;
-      -1 1;
-       1 0;
-       1 2;
-       2 2;
-       0 2;
-       2 1;
-       4 4;
-       5 4;
-       6 4;
-       7 4;
-       4 5;
-       5 6;
-       6 7;
-       6 9;
-       8 2;
-       -2 6;
-       5 5;
-      6 8;
-	  7 9;
-       8 8];
-
-x = ds(:,1);
-y = ds(:,2);
+function labels = dbscan(x,y,eps,minPts)
 
 L = length(x);
 
 %plot(x,y,'rx','linewidth',2);
-
 
 d_x = x - x';
 d_y = y - y';
@@ -39,8 +12,8 @@ d = sqrt(d_x.^2 + d_y.^2);
 
 % Parametros DBSCAN
 
-eps = 1.7;
-minPts = 3;
+%eps = 1.7;
+%minPts = 3;
 
 d_th = (d <= eps).*not(eye(L));
 
@@ -50,8 +23,6 @@ labels = -1*ones(L,1);
 visited = zeros(L,1);
 
 c_id = 0;
-
-
 
 for i=1:L
 	if (visited(i) == 0)
@@ -109,12 +80,20 @@ for i = 1:L
 		plot(x(i),y(i),' ms', 'linewidth',3);
 	elseif (labels(i)==3)
 		plot(x(i),y(i),' cp', 'linewidth',3);
+	elseif (labels(i)==4)
+		plot(x(i),y(i),' rp', 'linewidth',3);
+	elseif (labels(i)==5)
+		plot(x(i),y(i),' bs', 'linewidth',3);
+	elseif (labels(i)==6)
+		plot(x(i),y(i),' mo', 'linewidth',3);
+	elseif (labels(i)==7)
+		plot(x(i),y(i),' cx', 'linewidth',3);
 	elseif (labels(i)==99)
 		plot(x(i),y(i),' k^', 'linewidth',3);
 	else
 		plot(x(i),y(i),' g+', 'linewidth',3);
 	end
-		text(x(i),y(i),{num2str(i), [' neighs: ' num2str(np(i))] });%'VerticalAlignment','bottom', 'HorizontalAlignment','right'))
+		%text(x(i),y(i),{num2str(i), [' neighs: ' num2str(np(i))] });%'VerticalAlignment','bottom', 'HorizontalAlignment','right'))
 end
 
 hold off;

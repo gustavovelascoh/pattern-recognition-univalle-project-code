@@ -13,7 +13,7 @@ vth = (delta > 20).*theta';
 [x,c, th] = find(vth);
 
 
-h1 = polar(theta, laser_data,'bo'), set(h1,'linewidth',2,'markersize',5),hold on,
-h2 = polar(th, r, 'rx'), set(h2,'linewidth',2,'markersize',5)
-h3 = polar(theta, bg_data,'-- m'), set(h3,'linewidth',1.1)
-h4=  polar(0,0,'kp'), set(h4, 'markersize',10),axis([-8000 8000 -4000 12000])
+%h1 = polar(theta, laser_data,'bo'), set(h1,'linewidth',2,'markersize',5),hold on,
+%h2 = polar(th, r, 'rx'), set(h2,'linewidth',2,'markersize',5)
+%h3 = polar(theta, bg_data,'-- m'), set(h3,'linewidth',1.1)
+%h4=  polar(0,0,'kp'), set(h4, 'markersize',10),axis([-8000 8000 -4000 12000])
