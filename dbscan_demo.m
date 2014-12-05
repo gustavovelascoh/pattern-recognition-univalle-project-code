@@ -39,8 +39,8 @@ d = sqrt(d_x.^2 + d_y.^2);
 
 % Parametros DBSCAN
 
-eps = 1.7;
-minPts = 3;
+eps = 2.3;
+minPts = 5;
 
 d_th = (d <= eps).*not(eye(L));
 

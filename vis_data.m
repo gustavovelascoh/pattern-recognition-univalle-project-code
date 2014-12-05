@@ -1,14 +1,10 @@
 l = length(t);
 
-th = 0:0.5:180;
-
-th = th * pi / 180;
-
 for i=1:l
 
 h1 = polar(th,bg_data,'r');
 hold on;
-polar(th,laser_data(:,i)','xb'), axis([-5000 5000 -100 10000]);
+polar(th,laser_data(:,i)','.b'), axis([-5000 5000 -100 10000]);
 
 set(h1,'linewidth',2);
 
