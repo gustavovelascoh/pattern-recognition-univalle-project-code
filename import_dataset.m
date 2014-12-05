@@ -1,6 +1,9 @@
-file = "lms3.";
+% import_dataset
+function import_dataset(file)
 
-raw = [file "raw"]
+%file = "lms3";
+
+raw = [file ".raw"]
 fid = fopen(raw);
 
 ret = fread(fid,3,"float");
@@ -33,12 +36,15 @@ while 1
     
 end
 
-th = 0:180;
+th = 0:0.5:180;
 th = th * pi/180;
 
-bg_f =[file "bg"] 
+bg_f =[file ".bg"] 
 
 fid = fopen(bg_f);
 
 [tt, count] = fread(fid,1,"int");
-[bg, count] = fread(fid,MAXDATLEN,"unsigned short");
+[bg_data, count] = fread(fid,MAXDATLEN,"unsigned short");
+
+mat_file = [file ".mat"]
+eval(["save " mat_file " laser_data bg_data th t"]);
