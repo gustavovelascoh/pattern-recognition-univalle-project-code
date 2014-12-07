@@ -7,7 +7,7 @@ n_meas = size(laser_data,2);
 
 nclus = zeros(1, n_meas);
 
-for m=7155
+for m=14155
 %for m=1:n_meas
 
 	laser_meas = laser_data(:,m);
@@ -22,19 +22,30 @@ for m=7155
 
 	n_clus(m) = max(labels);
 
+	axes_p = zeros(n_clus(m),2);
+	for i=1:n_clus(m)
+	
+		[e1, e2] = klt(x(labels==i),y(labels==i));
+		axes_p(i,:) = sum(e2/sum(sum(e2)));
+	end
+	
+	axes_p
+
 	if plot_flag
-		subplot(2,3,1), plot(xr,yr,'b.', 'markersize',5);
-		subplot(2,3,2), plot(x,y,'b.', 'markersize',5);
+		subplot(2,2,1), plot(xr,yr,'b.', 'markersize',5);
+		subplot(2,2,2), plot(x,y,'b.', 'markersize',5);
 
 
 		for i=0:n_clus(m)
 			hold on;
 			if i<length(c_styles)
-				subplot(2,3,3), plot(x(labels==i),y(labels==i),c_styles(i+1));
+				subplot(2,2,3), plot(x(labels==i),y(labels==i),c_styles(i+1));
 %				pause;
 			else
-				subplot(2,3,3), plot(x(labels==i),y(labels==i),c_styles(length(c_styles)));
+				subplot(2,2,3), plot(x(labels==i),y(labels==i),c_styles(length(c_styles)));
 			end
+			
+			text( x(labels==i)(1), y(labels==i)(1), {num2str(i)} ,'VerticalAlignment','top', 'HorizontalAlignment','right');
 		end
 	end
 end
