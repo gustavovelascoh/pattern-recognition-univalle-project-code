@@ -32,38 +32,53 @@ for m=1251:10250
 
 	t_id = tic;	
 	
+	% If laser measurment is all different than 0
 	if mean(laser_meas) ~= 0
 
-
+      % Apply background removal
 		[th_1, r] = remove_bg(th, laser_meas, bg_data);
-
+		% Transform points to cartesian coordinates
 		[xr,yr]= pol2cart(th',laser_meas);
 		[x,y]=pol2cart(th_1,r);
-
+		
+		% Cell structure for storing foreground points
 		no_bgs{m} = [x,y];
-
+		
+		% Apply DBSCAN on foreground points to identify clusters
 		labels{m} = dbscan(x,y,100,3);
-
+		% Get number of cluster in current measurment
 		n_clus(m) = max(labels{m});
-
+		
+		% Intialise array for storing KLT transform
 		axes_p = zeros(n_clus(m),2);
+		
+		% Apply KLT (PCA) for each cluster to identify components and classify it
+		% into 1-axis or 2-axis object
 		for i=1:n_clus(m)
+			
+			% Adding some info to clus object
 			clus.id = i;
 			clus.pts = [x(labels{m}==i), y(labels{m}==i)];
 			clus.mean = mean(clus.pts);
+			
+			%Apply KLT transform and normalize components
 			[e1, e2] = klt(x(labels{m}==i),y(labels{m}==i));
 			axes_p(i,:) = sum(e2/sum(sum(e2)));
 			clus.egval = sum(e2/sum(sum(e2)));
-	
+			
+			% If one component have more than 99%, is considered as 1-axis object
+			% else, is considered as 2-axis object
 			if (clus.egval(2) > 0.99)
 				clus.n_axes = 1;
 			else
 				clus.n_axes = 2;
 			end
-	
+			
+			% Save cluster info to cell
 			clusters{m}{i} = clus;
 		end	
-	
+		
+		% Array for storing axes information
 		axes_m{m} = axes_p;
 
 	else
@@ -72,6 +87,7 @@ for m=1251:10250
 		clusters{m} = clusters{m-1};
 	end
 	
+	% Identify objects within current clusters and previous clusters
 	objects = update_objects(clusters{m},objects);
 	
 	t_ex(m) = toc(t_id);
@@ -80,7 +96,7 @@ for m=1251:10250
 
 	if plot_flag
 		subplot(2,2,1), plot(xr,yr,'b.', 'markersize',5);
-		subplot(2,2,2), plot(x,y,'b.', 'markersize',5);
+		subplot(2,2,2), plot(x,y,'p.', 'markersize',5);
 
 
 		for i=0:n_clus(m)
