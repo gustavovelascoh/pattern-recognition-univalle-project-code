@@ -6,6 +6,8 @@ L = length(x);
 
 
 d_x = x - x';
+%d_x = bsxfun(@minus, x, x);
+%d_y = bsxfun(@minus, y, y);
 d_y = y - y';
 
 % Matriz de distancias
@@ -52,11 +54,13 @@ for i=1:L
 				end
 				if (labels(eps_neigs(j)) == -1 || labels(eps_neigs(j)) == 0)
 					labels(eps_neigs(j)) = c_id;
-					j = 1;				
-				elseif (labels(eps_neigs(j)) ~= c_id)
+					j = 1;	
+				
+				% Para identificar puntosmulti cluster			
+				%elseif (labels(eps_neigs(j)) ~= c_id)
 					% Puntos inter cluster
 					%printf("Trying %d <- %d ",labels(eps_neigs(j)),c_id)
-					labels(eps_neigs(j)) = 99;
+					%labels(eps_neigs(j)) = 99;
 					%j = 1;
 				end
 				j++;
