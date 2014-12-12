@@ -1,8 +1,8 @@
 % Miscellaneous variables
 c_styles = {'xk','.b', '.r', '.g', '.m', '.k', '.c','.b', '.r', '.g', '.m', '.k', '.c','.b', '.r', '.g'};
 
-%plot_flag = true;
-plot_flag = false;
+plot_flag = true;
+%plot_flag = false;
 
 
 n_meas = size(laser_data,2);
@@ -25,9 +25,9 @@ endif
 
 
 
-%for m = 1223
+for m = 1500
 %for m=1200:n_meas
-for m=1251:10250
+%for m=1251:10250
 	laser_meas = laser_data(:,m);
 
 	t_id = tic;	

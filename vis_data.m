@@ -1,10 +1,11 @@
 l = length(t);
 
-for i=1:l
+for i=2000:l
 
-h1 = polar(th,bg_data,'r');
+h1 = polar(th,bg_data,'.r');
 hold on;
 polar(th,laser_data(:,i)','.b'), axis([-5000 5000 -100 10000]);
+text(0,10000,{['frame # ' num2str(i)]},'VerticalAlignment','bottom', 'HorizontalAlignment','center');
 
 set(h1,'linewidth',2);
 
