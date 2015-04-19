@@ -1,6 +1,6 @@
 l = length(t);
 
-for i=13090:l
+for i=1:l
 
 h1 = polar(th,bg_data,'.r');
 hold on;
