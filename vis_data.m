@@ -1,6 +1,6 @@
 l = length(t);
 
-for i=2000:l
+for i=13090:l
 
 h1 = polar(th,bg_data,'.r');
 hold on;
@@ -15,7 +15,7 @@ set(h1,'linewidth',2);
         break;
     end
 
-pause(delta/1000);
+pause(delta/10000);
 
 hold off;
 

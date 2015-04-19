@@ -25,7 +25,7 @@ endif
 
 
 
-for m = 1500
+for m = 5909
 %for m=1200:n_meas
 %for m=1251:10250
 	laser_meas = laser_data(:,m);
@@ -88,27 +88,30 @@ for m = 1500
 	end
 	
 	% Identify objects within current clusters and previous clusters
-	objects = update_objects(clusters{m},objects);
+%	objects = update_objects(clusters{m},objects);
 	
 	t_ex(m) = toc(t_id);
 
 	printf("Iter: %d, Num clusters: %d\n", m, n_clus(m));
 
 	if plot_flag
-		subplot(2,2,1), plot(xr,yr,'b.', 'markersize',5);
-		subplot(2,2,2), plot(x,y,'p.', 'markersize',5);
+		subplot(2,2,1), plot(xr,yr,'b.', 'markersize',5), axis([-3000 3000 -100 5900]); hold on;
+		subplot(2,2,2), plot(x,y,'m.', 'markersize',5), axis([-3000 3000 -100 5900]); hold on;
 
 
-		for i=0:n_clus(m)
+		for i=1:n_clus(m)
 			hold on;
 			if i<length(c_styles)
-				subplot(2,2,3), plot(x(labels{m}==i),y(labels{m}==i),c_styles(i+1));
+				subplot(2,2,3), plot(x(labels{m}==i),y(labels{m}==i),c_styles(i+1)), axis([-3000 3000 -100 5900]); hold on;
+				subplot(2,2,4), plot(x(labels{m}==i),y(labels{m}==i),c_styles(i+1)), axis([-3000 3000 -100 5900]); hold on;
 %				pause;
 			else
-				subplot(2,2,3), plot(x(labels{m}==i),y(labels{m}==i),c_styles(length(c_styles)));
+				subplot(2,2,3), plot(x(labels{m}==i),y(labels{m}==i),c_styles(length(c_styles))), axis([-3000 3000 -100 5900]); hold on;
+				subplot(2,2,4), plot(x(labels{m}==i),y(labels{m}==i),c_styles(length(c_styles))), axis([-3000 3000 -100 5900]); hold on;
 			end
 			
-			text( x(labels{m}==i)(1), y(labels{m}==i)(1), {num2str(i)} ,'VerticalAlignment','top', 'HorizontalAlignment','right');
+			subplot(2,2,3),text( x(labels{m}==i)(1), y(labels{m}==i)(1), {num2str(i)} ,'VerticalAlignment','top', 'HorizontalAlignment','right');
+			subplot(2,2,4),text( x(labels{m}==i)(1), y(labels{m}==i)(1), {['# of Axes: ' num2str(clusters{m}{i}.n_axes)]} ,'VerticalAlignment','top', 'HorizontalAlignment','right');
 		end
 	end
 end

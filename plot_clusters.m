@@ -3,21 +3,31 @@ function plot_clusters(clusters, idx, n_plots)
 c_styles = {'.b', '.r', '.g', '.m', '.k', '.c', '.y', '.b', '.r', '.g', '.m', '.k', '.c','.b', '.r'};
 
 if n_plots == 3
-for i=1:3
+	for i=1:3
 		n_clus = length(clusters{idx+i-1})
 		subplot(1,3,i);
 		for j=1:n_clus
 			plot(clusters{idx+i-1}{j}.pts(:,1),clusters{idx+i-1}{j}.pts(:,2),c_styles{j}), axis([-3000 3000 -100 5900]); hold on; 
 		end
 	end
-end
+%end
 
-if n_plots == 6
-for i=1:6
+else if n_plots == 6
+	for i=1:6
 		n_clus = length(clusters{idx+i-1})
 		subplot(2,3,i);
 		for j=1:n_clus
 			plot(clusters{idx+i-1}{j}.pts(:,1),clusters{idx+i-1}{j}.pts(:,2),c_styles{j}), axis([-3000 3000 -100 5900]); hold on; 
 		end
 	end
+%end
+
+else n_plots == 1
+	n_clus = length(clusters{idx})
+	for j=1:n_clus
+		plot(clusters{idx}{j}.pts(:,1),clusters{idx}{j}.pts(:,2),c_styles{j}), axis([-3000 3000 -100 5900]); hold on; 
+	end
 end
+
+end
+
