@@ -1,0 +1,9 @@
+% some commands
+
+% plot_clusters(clusters,5909,6), figure, plot_clusters(clusters_gr,5909,6)
+
+%  2590:
+%  5893, 5909: good cluster grouping
+%  3395: bad clustering grouping
+%  11707: good and bad clustering grouping
+plot_clusters(clusters,5909,6), figure, plot_clusters(clusters_gr,5909,6)
