@@ -1,8 +1,8 @@
 % Miscellaneous variables
 c_styles = {'xk','.b', '.r', '.g', '.m', '.k', '.c','.b', '.r', '.g', '.m', '.k', '.c','.b', '.r', '.g'};
 
-plot_flag = true;
-%plot_flag = false;
+%plot_flag = true;
+plot_flag = false;
 
 
 n_meas = size(laser_data,2);
@@ -25,7 +25,8 @@ endif
 
 
 
-for m = 5909
+%for m = 5909
+for m=1:n_meas
 %for m=1200:n_meas
 %for m=1251:10250
 	laser_meas = laser_data(:,m);
@@ -36,10 +37,10 @@ for m = 5909
 	if mean(laser_meas) ~= 0
 
       % Apply background removal
-		[th_1, r] = remove_bg(th, laser_meas, bg_data);
+		[th_nobg, r] = remove_bg(th, laser_meas, bg_data);
 		% Transform points to cartesian coordinates
 		[xr,yr]= pol2cart(th',laser_meas);
-		[x,y]=pol2cart(th_1,r);
+		[x,y]=pol2cart(th_nobg,r);
 		
 		% Cell structure for storing foreground points
 		no_bgs{m} = [x,y];
