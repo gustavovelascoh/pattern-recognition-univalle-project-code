@@ -1,8 +1,8 @@
-function [th, r] = remove_bg(theta, laser_data, bg_data)
+function [th_out, data_out] = remove_bg(th, data, bg_data)
 
-delta = bg_data - laser_data;
+delta = bg_data - data;
 fg = (delta > 20);
 
-r = laser_data(fg == 1);
-th = theta(fg == 1)';
+data_out = data(fg == 1);
+th_out = th(fg == 1)';
 
