@@ -4,10 +4,10 @@ clusters={};
 
 n_clus = max(labels);
 
-for i=0:n_clus
+for i=1:n_clus
 	cluster.id = i;
 	cluster.x = x(labels==i);
 	cluster.y = y(labels==i);
-	clusters{i+1} = cluster;
+	clusters{i} = cluster;
 end
 
