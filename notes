@@ -3,3 +3,33 @@ Frames with low entropy in lms7:
 
 Frames with low entropy in lms3:
 154     784    1534    2705    9558   11090   12398   12537   12937   13769   14604   15025   16954   17002   17633   19615   20609   21787   22090
+
+-----
+
+load lms3.mat
+calib=[-4.174827 13.120000 26.700000];
+frame0 = laser_data(:,1);
+[th1,frame1] = remove_bg(th, frame0, bg_data);
+frame2 = transform_data(th1, frame1, calib(1), calib(2), calib(3));
+oa=[calib(2) calib(3) calib(2)+cos(calib(1)+pi/2) calib(3)+sin(calib(1)+pi/2)];
+scatter(frame2(:,1), frame2(:,2)),hold, drawArrow(oa,200,200,0.5)
+labels = dbscan(frame2(:,1), frame2(:,2),100,3);
+
+clusters = get_clusters(frame2(:,1), frame2(:,2),labels);
+
+plot(clusters{0}.x, clusters{0}.y,'k+ ')
+error: subscript indices must be either positive integers less than 2^31 or logicals
+octave:40> ax = gca
+ax = -120.17
+octave:41> hold(ax,'on')
+octave:42> plot(clusters{1}.x, clusters{1}.y,'k+ ')
+octave:43> hold(gca,'on')
+octave:44> plot(clusters{2}.x, clusters{2}.y,'r. ')
+octave:45> plot(clusters{3}.x, clusters{3}.y,'b. ')
+octave:46> plot(clusters{4}.x, clusters{4}.y,'y. ')
+octave:47> plot(clusters{5}.x, clusters{5}.y,'g. ')
+octave:48> plot(clusters{6}.x, clusters{6}.y,'k. ')
+plot(clusters{6}.x, clusters{6}.y,'k. ')
+octave:49> plot(clusters{6}.x, clusters{6}.y,'k. ')
+octave:50> plot(clusters{6}.x, clusters{6}.y,'k. ')
+octave:51> figure, scatter(frame2(:,1), frame2(:,2)),hold, drawArrow(oa,200,200,0.5)
