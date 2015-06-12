@@ -6,7 +6,10 @@ e0 = zeros(l,1);
 %e3 = zeros(l,1);
 
 for i=1:l
-	e0(i) = entropy(ld(:,i));
+
+	[th1,frame1] = remove_bg(th, ld(:,i), bg_data);
+
+	e0(i) = entropy(frame1);
 	%e1(i) = get_entropy(ld(:,i));
 	%e2(i) = entropy2(ld(:,i));
 
