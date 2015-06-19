@@ -1,10 +1,12 @@
-function [ef, v] = entropy_filter(ef, e)
+function [ef, v, u, e_th] = entropy_filter(ef, e)
 
-BUF_SIZE = 20;
+BUF_SIZE = 64;
 
 curr_len = length(ef);
 
-e_th = mean(ef)-5*std(ef);
+u = mean(ef);
+
+e_th = u-6*std(ef);
 v=0;
 
 if (e >= e_th)
@@ -13,5 +15,7 @@ if (e >= e_th)
 	else		
 		ef = [ef e];		
 	end
+	
 	v = 1;
 end
+
