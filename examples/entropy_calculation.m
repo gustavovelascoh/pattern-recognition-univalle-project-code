@@ -3,12 +3,23 @@ l = size(ld, 2);
 e0 = zeros(l,1);
 e1 = zeros(l,1);
 
+tex0 = zeros(l,1);
+tbg0 = zeros(l,1);
+tex1 = zeros(l,1);
+
 for i=1:l
 
+	tic;
 	e0(i) = entropy(ld(:,i));
-	[th1,frame1] = remove_bg(th, ld(:,i), bg_data);
+	tex0(i) = toc;
 
+	tic;
+	[th1,frame1] = remove_bg(th, ld(:,i), bg_data);
+	tbg0(i) = toc;
+
+	tic;
 	e1(i) = entropy(frame1);
+	tex1(i) = toc;
 	
 	%e1(i) = get_entropy(ld(:,i));
 	%e2(i) = entropy2(ld(:,i));
