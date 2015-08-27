@@ -12,7 +12,7 @@ df = [];
 for i=1:le
 
 	tic;
-	[ef, v, u(i), e_th(i)] =  entropy_filter(ef, e0(i));
+	[ef, v, u(i), e_th(i)] =  entropy_filter(ef, e0(i), 64, 4);
 	t_ex0(i) = toc;
 
 	if (~v)
