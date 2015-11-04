@@ -1,22 +1,29 @@
 %vis_clusters
 
-function vis_clusters(t, clusters, init, fin)
+l = length(clusters_data);
+axis_config = [-3000 4000 0 7000];
+%function vis_clusters(t, clusters, init, fin)
 
 
 c_styles = {'.b', '.r', '.g', '.m', '.k', '.c','.b', '.r', '.g', '.m', '.k', '.c','.b', '.r', '.g'};
 
-for i=init:fin
-
-	if (i ~= fin)
-	  delta = t(i+1) - t(i);
-	else
-	  delta = 0;
-	end
+for i=1:l
 	
-	n_clus = length(clusters{i});
+	t = clusters_data{i}.time;
+
+	if (i ~= l)
+		tn = clusters_data{i+1}.time;
+		delta = tn - t;
+	else
+	  	delta = 0;
+	end
+
+	clusters = clusters_data{i}.clusters;
+	n_clus = length(clusters);
 	
 	for j=1:n_clus
-		plot(clusters{i}{j}.pts(:,1),clusters{i}{j}.pts(:,2),c_styles{j});axis([-3000 3000 -100 6000]); hold on; 
+		plot(clusters{j}.x,clusters{j}.y,c_styles{j});
+		axis(axis_config); hold on; 
 	end
 		
 	pause(delta/100);
