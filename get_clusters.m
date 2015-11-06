@@ -6,8 +6,9 @@ n_clus = max(labels);
 
 for i=1:n_clus
 	cluster.id = i;
-	cluster.x = x(labels==i);
-	cluster.y = y(labels==i);
+	c_x = x(labels==i);
+	c_y = y(labels==i);
+	cluster.points = [c_x c_y];
 	clusters{i} = cluster;
 end
 

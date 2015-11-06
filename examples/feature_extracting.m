@@ -1,9 +1,9 @@
-%clustering
+%feature_extracting
 
 l = size(calibrated_data,2);
 
-init_idx = 1;
-%init_idx = 16000;
+%init_idx = 1;
+init_idx = 16000;
 
 if init_idx == 1
 	clusters_data = {}
