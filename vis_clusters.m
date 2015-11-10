@@ -22,7 +22,7 @@ for i=1:l
 	n_clus = length(clusters);
 	
 	for j=1:n_clus
-		plot(clusters{j}.x,clusters{j}.y,c_styles{j});
+		plot(clusters{j}.points(:,1),clusters{j}.points(:,2),c_styles{j});
 		axis(axis_config); hold on; 
 	end
 		

@@ -1,17 +1,23 @@
 %clustering
 
-l = size(calibrated_data,2);
+l = size(clusters_data,2);
 
 init_idx = 1;
 %init_idx = 16000;
 
 if init_idx == 1
-	clusters_data = {}
+	feature_data = {}
 end
 
 for i=init_idx:l
 
 	curr_data = {};
+
+	for j=1:size(clusters_data{i},2);
+		curr_clus_data = {};
+		curr_clus_data.mean = clusters_data{i}.
+	end
+
 	curr_data.time = calibrated_data{i}.time;
 
 	x = calibrated_data{i}.points(:,1);
