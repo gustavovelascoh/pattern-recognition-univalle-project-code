@@ -13,5 +13,5 @@ function f = get_features(cluster)
 		n_axes = 2;
 	end
 
-
+% n_axes, x_m, y_m, x_min, y_min, x_max, y_max
 f = [n_axes, c, mins, maxs];
