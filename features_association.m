@@ -42,7 +42,7 @@ else
 				
 				in_box = inpolygon(obj.center(1),
 								obj.center(2),
-								[target_obj.box(1:2) target_obj.box(1:2)], 
+								[target_obj.box(1:2) fliplr(target_obj.box(1:2))], 
 								[target_obj.box(3) target_obj.box(3:4) target_obj.box(4)]);
 				%printf("%d, %d, [%d %d], [%d %d]\n",obj.center(1),
 				%				obj.center(2),
@@ -50,7 +50,7 @@ else
 				%				target_obj.box(3),target_obj.box(4));
 				
 				if in_box==1
-					printf("new_obj %d is related with old_obj %d\n", obj.id, target_obj.id);
+					%printf("new_obj %d is related with old_obj %d\n", obj.id, target_obj.id);
 					target_obj.linked = 1;
 					target_obj.links = [obj.links obj.id];
 					objects{target_obj.id} = target_obj;

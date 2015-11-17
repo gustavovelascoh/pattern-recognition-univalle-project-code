@@ -21,11 +21,14 @@ for i=init_idx:l
 	for j=1:n_clus		
 		features = get_features(clusters_data{i}.clusters{j});
 		curr_feat_data{j} = {};
-		curr_feat_data{j}.id = clusters_data{i}.clusters{j}.id;
+		curr_feat_data{j}.time = curr_data.time;
+		curr_feat_data{j}.cluster_id = clusters_data{i}.clusters{j}.id;
 		curr_feat_data{j}.features =features;
+
+		%curr_data{j}=curr_feat_data;
 	end
 
-	curr_data.features = curr_feat_data;
+	%curr_data.features = curr_feat_data;
 
-	features_data{i} = curr_data;
+	features_data{i} = curr_feat_data;
 end
