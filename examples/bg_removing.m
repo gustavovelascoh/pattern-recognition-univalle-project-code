@@ -1,5 +1,9 @@
 %bg_removing
 
+% input: frame (t[], theta[], data[])
+% output: frame {{time, theta, data},...}
+
+
 len = size(ld,2);
 no_bg_data = {};
 

@@ -1,14 +1,14 @@
 %get_object_trajectory(objs,i)
 
-n_links = length(objs{i}.links);
-links = i;
-centers = [objs{i}.center'];
+n_links = length(objs{o_id}.links);
+links = o_id;
+centers = [objs{o_id}.center'];
 while n_links == 1
-	link = objs{i}.links;
+	link = objs{o_id}.links;
 	centers = [centers objs{link}.center'];
-	i=link;
+	o_id=link;
 	links = [links link];
-	n_links = length(objs{i}.links);
+	n_links = length(objs{o_id}.links);
 end
 
 printf("object %d has %d links\n", links(1), length(links));
